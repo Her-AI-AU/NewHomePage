@@ -4,9 +4,27 @@ import Image from 'next/image';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
   useEffect(() => {
-    if (!menuOpen) return;
-
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+      
+      if (!menuOpen) {
+        setVisible(
+          (prevScrollPos > currentScrollPos) || // 向上滚动显示
+          currentScrollPos < 10  // 接近顶部显示
+        );
+      }
+      setPrevScrollPos(currentScrollPos);
+    };
+    if (menuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  
+    window.addEventListener('scroll', handleScroll);
     const closeOnOutsideClick = (e) => {
       if (!e.target.closest('nav') && !e.target.closest('button')) {
         setMenuOpen(false);
@@ -17,7 +35,7 @@ export default function Header() {
       if (e.key === 'Escape') setMenuOpen(false);
     };
 
-    document.body.style.overflow = 'hidden';
+
     document.addEventListener('click', closeOnOutsideClick);
     document.addEventListener('keydown', closeOnEsc);
 
@@ -25,10 +43,15 @@ export default function Header() {
       document.body.style.overflow = '';
       document.removeEventListener('click', closeOnOutsideClick);
       document.removeEventListener('keydown', closeOnEsc);
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, [menuOpen]);
+  }, [menuOpen, prevScrollPos]);
   return (
-    <header className="bg-white shadow-md py-2 sticky top-0 z-10 w-full">
+    <header 
+    className={`bg-white shadow-md py-2 sticky top-0 z-10 w-full transition-transform duration-300 ${
+      visible ? 'translate-y-0' : '-translate-y-full'
+    }`}
+  >
       <div className="max-w-7xl mx-auto flex justify-between items-center p-4 lg:justify-between">
         
         {/* Logo Section */}
