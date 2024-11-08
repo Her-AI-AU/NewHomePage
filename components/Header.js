@@ -6,7 +6,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white shadow-md p-2 sticky top-0 z-10 w-full">
+    <header className="bg-white shadow-md py-2 sticky top-0 z-10 w-full">
       <div className="max-w-7xl mx-auto flex justify-between items-center p-4 lg:justify-between">
         
         {/* Logo Section */}
