@@ -1,10 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    if (!menuOpen) return;
 
+    const closeOnOutsideClick = (e) => {
+      if (!e.target.closest('nav') && !e.target.closest('button')) {
+        setMenuOpen(false);
+      }
+    };
+
+    const closeOnEsc = (e) => {
+      if (e.key === 'Escape') setMenuOpen(false);
+    };
+
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('click', closeOnOutsideClick);
+    document.addEventListener('keydown', closeOnEsc);
+
+    return () => {
+      document.body.style.overflow = '';
+      document.removeEventListener('click', closeOnOutsideClick);
+      document.removeEventListener('keydown', closeOnEsc);
+    };
+  }, [menuOpen]);
   return (
     <header className="bg-white shadow-md py-2 sticky top-0 z-10 w-full">
       <div className="max-w-7xl mx-auto flex justify-between items-center p-4 lg:justify-between">
@@ -76,6 +98,14 @@ export default function Header() {
 
         .fade-in {
           animation: fadeIn 0.3s ease forwards;
+          will-change: opacity, transform;
+        }
+
+        /* 大屏幕时禁用不必要的动画 */
+        @media (min-width: 1024px) {
+          .fade-in {
+            animation: none;
+          }
         }
 
         .nav-link {
