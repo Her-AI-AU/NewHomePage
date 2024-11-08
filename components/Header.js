@@ -9,13 +9,14 @@ export default function Header() {
         
         {/* Logo Section */}
         <Link href="/" className="flex items-center">
-          <Image
-            src="/herai.png" // Update this path to the actual location of your logo file
-            alt="Logo"
-            width={100} // Adjust width as needed
-            height={100} // Adjust height as needed
-            className="mr-4"
-          />
+        <Image
+        src={process.env.NODE_ENV === 'development' ? '/herai.png' : '/NewHomePage/herai.png'}
+          alt="Logo"
+          width={100}
+          height={100}
+          className="mr-4"
+          priority // 添加优先加载
+        />
         </Link>
         
         {/* Navigation Links */}
