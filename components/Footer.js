@@ -17,7 +17,7 @@ export default function Footer() {
           <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
           <ul className="space-y-2">
             <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
-            <li><Link href="/portfolio" className="hover:text-white transition-colors">Portfolio</Link></li>
+            <li><Link href="/projects" className="hover:text-white transition-colors">Projects</Link></li>
             <li><Link href="/testimonials" className="hover:text-white transition-colors">Testimonials</Link></li>
             <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
           </ul>
@@ -45,7 +45,7 @@ export default function Footer() {
       </div>
 
       <div className="text-center text-gray-500 mt-8 border-t border-gray-700 pt-4">
-        <p>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Her.AI. All rights reserved.</p>
       </div>
     </footer>
   );

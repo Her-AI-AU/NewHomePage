@@ -1,5 +1,5 @@
 import Header from '../components/Header';
-import PortfolioCard from '../components/PortfolioCard';
+import Projects from '../components/ProjectsCard';
 import TestimonialCard from '../components/TestimonialCard';
 import BlogCard from '../components/BlogCard';
 
@@ -17,11 +17,11 @@ export default function Home() {
         </section>
 
         <section>
-          <h2 className="text-3xl font-semibold text-gray-800 mb-6">Portfolio</h2>
+          <h2 className="text-3xl font-semibold text-gray-800 mb-6">Projects</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <PortfolioCard />
-            <PortfolioCard />
-            <PortfolioCard />
+            <Projects />
+            <Projects />
+            <Projects />
           </div>
           <div className="text-center mt-8">
             <button className="bg-gray-800 text-white py-2 px-6 rounded-full hover:bg-gray-700 transition duration-300 shadow-lg">
