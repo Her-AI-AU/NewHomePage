@@ -10,7 +10,7 @@ export default function Header() {
         {/* Logo Section */}
         <Link href="/" className="flex items-center">
         <Image
-        src={process.env.NODE_ENV === 'development' ? '/herai.png' : '/NewHomePage/herai.png'}
+        src='/herai.png'
           alt="Logo"
           width={100}
           height={100}
